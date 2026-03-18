@@ -29,7 +29,7 @@ export const FloatingNav = styled.nav`
     right: 50%;
     bottom: 30px;
     transform: translateX(50%);
-    padding: 12px 24px;
+    padding: 12px 32px;
     gap: 20px;
   }
 `;
