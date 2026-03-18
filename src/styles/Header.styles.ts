@@ -30,7 +30,7 @@ export const FloatingNav = styled.nav`
     bottom: 30px;
     transform: translateX(50%);
     padding: 12px 32px;
-    gap: 20px;
+    gap: 32px;
   }
 `;
 
