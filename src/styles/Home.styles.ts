@@ -32,7 +32,7 @@ export const SectionTitle = styled.h2`
     display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: #0066ff;
+    background-color: #00D1B2;
     border-radius: 50%;
     margin-left: 10px;
   }

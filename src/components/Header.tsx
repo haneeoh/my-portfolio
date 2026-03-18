@@ -83,7 +83,7 @@ export default function Header() {
           }
         }}
       >
-        <FiUser /> <span>About</span>
+        <FiUser /> <span>Base</span>
       </S.NavItem>
       
       {/* 2. Projects 섹션 */}
@@ -92,7 +92,7 @@ export default function Header() {
         onClick={handleProjectLinkClick}
         style={{ position: 'relative' }}
       >
-        <FiFolder /> <span>Projects</span>
+        <FiFolder /> <span>Space</span>
         
         {!isMainPage && showPopup && (
           <S.MiniPopup onClick={(e) => e.stopPropagation()}>
@@ -124,7 +124,7 @@ export default function Header() {
           }
         }}
       >
-        <FiMail /> <span>Contact</span>
+        <FiMail /> <span>Link</span>
       </S.NavItem>
     </S.FloatingNav>
   );

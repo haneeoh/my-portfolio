@@ -44,7 +44,7 @@ export const Title = styled.h3`
 export const Role = styled.span`
   font-size: 0.85rem;
   font-weight: 600;
-  color: #0066ff;
+  color: #00D1B2;
   margin-bottom: 12px;
   display: block;
 `;

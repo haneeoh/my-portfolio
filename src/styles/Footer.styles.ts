@@ -41,7 +41,7 @@ export const InfoLink = styled.a`
 
   &:hover {
     opacity: 1;
-    color: #0066ff;
+    color: #00D1B2;
     transform: translateY(-2px);
   }
 `;

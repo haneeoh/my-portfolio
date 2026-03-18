@@ -2,25 +2,34 @@ import styled from 'styled-components';
 
 export const FloatingNav = styled.nav`
   position: fixed;
-  top: auto%;
-  transform: translateY(-50%);
-  bottom: 30px; /* 모바일에선 오른쪽 중앙보다 아래쪽이 터치하기 편해요 */
   right: 20px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 30px 20px;
-  border-radius: 50px;
+  bottom: 50%;
+  transform: translateY(50%);
+  
+  /* 💡 흰 배경에서 가장 예쁜 '리얼 글래스' 마감 */
+  background: rgba(255, 255, 255, 0.3); /* 💡 투명도를 확 낮춰서 뒤가 비치게 */
+  backdrop-filter: blur(15px); 
+  -webkit-backdrop-filter: blur(15px);
+  
+  /* 💡 테두리: 흰 배경에서 구획을 나눠주는 아주 연한 그레이 라인 */
+  border: 1px solid rgba(0, 0, 0, 0.05); 
+  
+  padding: 24px 14px;
+  border-radius: 40px;
+  /* 💡 쉐도우: 시커먼 그림자 삭제! 아주 연한 미스트 쉐도우 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); 
+  
   display: flex;
   flex-direction: column;
   gap: 30px;
   z-index: 1000;
 
   @media (max-width: 768px) {
-    flex-direction: row; /* 가로로 나열할 수도 있어요! 선택사항 */
+    flex-direction: row;
     right: 50%;
-    transform: translateX(50%); /* 하단 중앙으로 이동 */
-    padding: 15px 25px;
+    bottom: 30px;
+    transform: translateX(50%);
+    padding: 12px 24px;
     gap: 20px;
   }
 `;
@@ -29,105 +38,127 @@ export const NavItem = styled.div<{ $isActive: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
-  /* 💡 활성화 상태일 때 파란색으로 고정 */
-  color: ${props => props.$isActive ? '#0066ff' : '#333'};
+  
+  /* 💡 포인트 컬러: 흰 배경에서도 선명한 '네온 민트' (#00D1B2) 딱 하나만! */
+  color: ${props => props.$isActive ? '#00D1B2' : '#999'};
   
   svg { 
-    font-size: 1.5rem; 
-    /* 활성화 시 아이콘 크기를 살짝 키워도 예뻐요 */
-    transform: ${props => props.$isActive ? 'scale(1.1)' : 'scale(1)'};
+    font-size: 1.3rem;
+    transition: all 0.2s ease;
   }
   
   span { 
-    font-size: 0.8rem; 
-    font-weight: 700; 
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.65rem; 
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: ${props => props.$isActive ? 1 : 0.6};
   }
   
   &:hover { 
-    color: #0066ff;
+    color: #00D1B2; /* 💡 호버도 동일한 민트로 통일 */
     transform: translateY(-2px);
+  }
+
+  /* 💡 포인트 컬러와 동일한 민트 점 */
+  &::after {
+    content: '';
+    width: 4px; height: 4px;
+    background: #00D1B2;
+    border-radius: 50%;
+    display: ${props => props.$isActive ? 'block' : 'none'};
+    margin-top: 4px;
   }
 `;
 
 export const MiniPopup = styled.div`
   position: absolute;
-  right: 120%; 
+  right: calc(100% + 15px);
   top: 50%;
   transform: translateY(-50%);
-  background: white;
-  padding: 15px;
+  
+  /* 💡 배경: 비치지 않는 깔끔한 연그레이 (#f8f8f8) */
+  background: #f8f8f8; 
+  padding: 12px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  
+  /* 💡 [보수] 위쪽 테두리 및 이상한 색깔 쉐도우 싹 삭제! */
+  border: 1px solid rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+  
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
   min-width: 160px;
-  border: 1px solid #eee;
-  
-  /* [PC 버전] 삼각형 꼬리표 (오른쪽) */
+  width: max-content;
+  z-index: 1100;
+
+  /* 💡 [보수] 삼각형 - 이제 진짜 잘 보이게 위치랑 색상 확실히 고정 */
   &::after {
     content: '';
     position: absolute;
     top: 50%;
-    right: -8px;
+    right: -8px; 
     transform: translateY(-50%);
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-left: 8px solid white;
+    border-left: 8px solid #f8f8f8; /* 배경색이랑 똑같이! */
   }
 
-  /* 📱 [모바일 버전] 위로 솟아오르게 수정! */
   @media (max-width: 768px) {
     right: auto;
-    top: auto;
     left: 50%;
-    bottom: calc(100% + 20px); /* 버튼 위로 20px 띄움 */
-    transform: translateX(-50%); /* 가로 중앙 정렬 */
-    min-width: 180px; /* 터치하기 편하게 살짝 키움 */
-    
-    /* [모바일 버전] 삼각형 꼬리표 (아래쪽으로 이동) */
+    bottom: calc(100% + 20px);
+    transform: translateX(-50%);
     &::after {
       right: auto;
-      top: 100%; /* 팝업 아래쪽에 붙임 */
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
-      border-top: 8px solid white; /* 위쪽 화살표 모양 */
+      border-top: 8px solid #f8f8f8;
       border-bottom: none;
-    }
-
-    /* 슥 나타나는 애니메이션 */
-    animation: popUp 0.3s ease-out;
-  }
-
-  @keyframes popUp {
-    from {
-      opacity: 0;
-      transform: translate(-50%, 10px);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, 0);
     }
   }
 `;
 
 export const PopupItem = styled.div`
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #555;
+  padding: 10px 14px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
   white-space: nowrap;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: 0.2s;
   
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  /* 💡 [핵심] 글자와 화살표 사이 최소 간격(20px) 확보! */
+  gap: 20px; 
+
+  &::after {
+    content: '→';
+    opacity: 0;
+    transition: all 0.2s ease;
+    transform: translateX(-5px);
+    /* 💡 화살표가 글자에 너무 붙지 않게 한 번 더 밀어주기 */
+    margin-left: auto; 
+  }
+
   &:hover { 
-    color: #0066ff; 
-    background: #f0f7ff;
+    color: #00D1B2;
+    background: rgba(0, 209, 178, 0.05);
+    
+    &::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 `;

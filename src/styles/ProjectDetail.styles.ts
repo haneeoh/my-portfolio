@@ -29,10 +29,31 @@ export const LinkGroup = styled.div` display: flex; gap: 12px; margin-bottom: 10
 export const IconButton = styled.a<{ $primary?: boolean }>`
   display: flex; align-items: center; gap: 8px; padding: 12px 24px;
   border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem;
-  background: ${props => props.$primary ? '#0066ff' : 'rgba(255,255,255,0.1)'};
   color: white; border: 1px solid rgba(255,255,255,0.2);
-  transition: all 0.3s;
-  &:hover { background: #0066ff; transform: translateY(-3px); }
+  transition: all 0.3s ease;
+
+  /* 1️⃣ 기본 배경색 설정 (주소 분석) */
+  background: ${props => 
+    props.href?.includes('youtube.com') ? '#FF0000' : // 유튜브는 레드
+    props.$primary ? '#00D1B2' :                      // 기본은 민트
+    'rgba(255,255,255,0.1)'                           // 나머지는 반투명
+  };
+
+  /* 2️⃣ 호버 시 배경색 설정 (여기가 포인트! 민트 침입 방지) */
+  &:hover {
+    transform: translateY(-3px);
+    background: ${props => 
+      props.href?.includes('youtube.com') ? '#CC0000' : // 유튜브는 더 진한 레드
+      '#05BD9E'                                        // 나머지는 민트 계열
+    };
+  }
+
+  /* 📱 모바일 버전 슬림 핏 */
+  @media (max-width: 768px) {
+    padding: 10px 18px;
+    font-size: 0.8rem;
+    gap: 6px;
+  }
 `;
 
 export const InfoGrid = styled.div`
@@ -115,9 +136,9 @@ export const TroubleTitle = styled.h4` margin-top: 0; font-size: 1.1rem; `;
 export const TroubleBox = styled.div<{ $isProblem?: boolean }>`
   padding: 15px; border-radius: 8px; margin-top: 10px; font-size: 0.95rem;
   background: ${props => props.$isProblem ? '#fff5f5' : '#f0f7ff'};
-  border-left: 4px solid ${props => props.$isProblem ? '#ff6b6b' : '#0066ff'};
+  border-left: 4px solid ${props => props.$isProblem ? '#ff6b6b' : '#00D1B2'};
 `;
-export const TroubleLabel = styled.div<{ $isProblem?: boolean }>` font-weight: 800; font-size: 0.8rem; color: ${props => props.$isProblem ? '#ff6b6b' : '#0066ff'}; margin-bottom: 5px; `;
+export const TroubleLabel = styled.div<{ $isProblem?: boolean }>` font-weight: 800; font-size: 0.8rem; color: ${props => props.$isProblem ? '#ff6b6b' : '#00D1B2'}; margin-bottom: 5px; `;
 
 export const ModalOverlay = styled.div`
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -129,7 +150,7 @@ export const ModalImage = styled.img` max-width: 85%; max-height: 85%; object-fi
 export const ArrowBtn = styled.button`
   position: absolute; top: 50%; transform: translateY(-50%);
   background: none; border: none; color: white; cursor: pointer; padding: 20px;
-  opacity: 0.5; transition: 0.3s; &:hover { opacity: 1; color: #0066ff; }
+  opacity: 0.5; transition: 0.3s; &:hover { opacity: 1; color: #00D1B2; }
 `;
 
 export const CloseBtn = styled.div` position: absolute; top: 30px; right: 30px; color: white; cursor: pointer; font-size: 2rem; opacity: 0.7; &:hover { opacity: 1; } `;
@@ -146,23 +167,33 @@ export const MobileBackdrop = styled.div`
   z-index: 85; /* 설명창(90)보다 낮게 */
 `;
 
+/* 💡 2. 모바일 토글 버튼 사이즈 하향 조정 */
 export const MobileToggleButton = styled.button`
   display: none;
   @media (max-width: 1024px) {
     display: flex;
     position: fixed;
-    /* 💡 하단 헤더(FloatingNav) 위쪽이나 근처로 배치 */
-    bottom: 120px; 
-    right: 25px;
+    bottom: 110px; /* 💡 헤더(FloatingNav)랑 겹치지 않게 살짝 조정 */
+    right: 20px;
     z-index: 100;
-    width: 42px;
-    height: 42px;
-    background: #0066ff;
+    
+    /* 💡 [수정] 크기를 42px -> 36px로 줄여서 더 콤팩트하게 마감 */
+    width: 36px;
+    height: 36px;
+    
+    background: #00D1B2;
     color: white;
     border-radius: 50%;
-    justify-content: center; align-items: center;
-    font-size: 1.3rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border: 2px solid white; /* 💡 헤더랑 구분되게 흰색 테두리 살짝! */
+    justify-content: center; 
+    align-items: center;
+    font-size: 1.1rem; /* 💡 아이콘 크기도 같이 살짝 줄임 */
+    
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 2px solid white; 
+    transition: transform 0.2s active;
+    
+    &:active {
+      transform: scale(0.9); /* 누를 때 쫀득한 반응감 추가 */
+    }
   }
 `;
