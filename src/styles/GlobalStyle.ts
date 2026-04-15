@@ -1,34 +1,46 @@
-// src/styles/GlobalStyle.ts
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-
-  html, body, #root {
+  *, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Plus Jakarta Sans', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #faf8f5;
-    color: #111;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #F9F7F4;
+    color: #141414;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
-  * {
-    margin: 0;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  button {
+    border: none;
+    background: none;
     padding: 0;
-    box-sizing: border-box;
+    cursor: pointer;
     font-family: inherit;
+    outline: none;
   }
 
-  a { text-decoration: none; color: inherit; cursor: pointer; }
-  button { border: none; background: none; padding: 0; cursor: pointer; outline: none; font-family: inherit; }
   ul, li { list-style: none; }
-  img { max-width: 100%; display: block; -webkit-user-drag: none; }
+  img { max-width: 100%; display: block; }
 
-  ::selection { background-color: #00D1B2; color: #fff; }
+  ::selection {
+    background: #C05C3A;
+    color: #F9F7F4;
+  }
 `;
 
 export default GlobalStyle;
