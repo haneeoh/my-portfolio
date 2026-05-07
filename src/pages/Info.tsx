@@ -1,43 +1,5 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-const Nav = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  border-bottom: 1px solid #e8e4de;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 clamp(1.5rem, 4vw, 4rem);
-  height: 52px;
-`;
-
-const NavBrand = styled(Link)`
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #141414;
-`;
-
-const NavLink = styled(Link)`
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #8a8075;
-  transition: color 0.15s;
-
-  &:hover {
-    color: #141414;
-  }
-`;
-
-const NavLinks = styled.nav`
-  display: flex;
-  gap: 2.5rem;
-`;
+import Nav from '../components/Nav';
 
 // ─── About ─────────────────────────────────────────────────────────────────
 
@@ -190,13 +152,7 @@ const Footer = styled.footer`
 export default function Info() {
   return (
     <>
-      <Nav>
-        <NavBrand to="/">hanee oh</NavBrand>
-        <NavLinks>
-          <NavLink to="/collection">Collection</NavLink>
-          <NavLink to="/info">Info</NavLink>
-        </NavLinks>
-      </Nav>
+      <Nav />
 
       {/* ─ About ─ */}
       <AboutSection>

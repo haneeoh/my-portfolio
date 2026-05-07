@@ -58,7 +58,7 @@ export const projectData: Project[] = [
     category: 'Personal Project',
     placeholderColor: '#2C3A2E',
     images: [],
-    link: 'https://your-site.com',
+    link: 'https://crnr.kr',
     description:
       "사내 디자인 요구사항인 '미니멀리즘'을 반영하여, 가로/세로 그리드와 간결한 선만을 활용한 레이아웃 구조를 기획했습니다.\n\n시공 사례를 효과적으로 보여주기 위해 클릭 시 화면 사이즈에 맞춰 유동적으로 조절되는 커스텀 반응형 갤러리 뷰어(모달)를 직접 구현했으며, 배포까지 전 과정을 주도했습니다.",
     techStack: ['Astro', 'HTML/CSS', 'JavaScript'],

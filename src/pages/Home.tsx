@@ -2,48 +2,7 @@ import { useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { projectData } from '../data/projects';
-
-// ─── Nav ───────────────────────────────────────────────────────────────────
-
-const Nav = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  border-bottom: 1px solid #e8e4de;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 clamp(1.5rem, 4vw, 4rem);
-  height: 52px;
-`;
-
-const NavBrand = styled.button`
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #141414;
-  cursor: pointer;
-`;
-
-const NavLinks = styled.nav`
-  display: flex;
-  gap: 2.5rem;
-`;
-
-const NavLink = styled(Link)`
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #8a8075;
-  cursor: pointer;
-  transition: color 0.15s;
-
-  &:hover {
-    color: #141414;
-  }
-`;
+import Nav from '../components/Nav';
 
 // ─── Hero ──────────────────────────────────────────────────────────────────
 
@@ -313,16 +272,7 @@ export default function Home() {
 
   return (
     <>
-      {/* ─ Nav ─ */}
-      <Nav>
-        <NavBrand onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          hanee oh
-        </NavBrand>
-        <NavLinks>
-          <NavLink to="/collection">Collection</NavLink>
-          <NavLink to="/info">Info</NavLink>
-        </NavLinks>
-      </Nav>
+      <Nav />
 
       {/* ─ Hero ─ */}
       <HeroSection>

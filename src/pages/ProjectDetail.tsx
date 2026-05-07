@@ -2,43 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { projectData } from '../data/projects';
-
-// ─── Nav ───────────────────────────────────────────────────────────────────
-
-const Nav = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  border-bottom: 1px solid #e8e4de;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 clamp(1.5rem, 4vw, 4rem);
-  height: 52px;
-`;
-
-const NavBrand = styled.button`
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #141414;
-  cursor: pointer;
-`;
-
-const NavBack = styled.button`
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #8a8075;
-  cursor: pointer;
-  transition: color 0.15s;
-
-  &:hover {
-    color: #141414;
-  }
-`;
+import Nav from '../components/Nav';
 
 // ─── Breadcrumb ────────────────────────────────────────────────────────────
 
@@ -549,7 +513,7 @@ export default function ProjectDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setImgIndex(0);
-  }, [id]);
+  }, [id, setImgIndex]);
 
   useEffect(() => {
     if (!modalOpen) return;
@@ -574,11 +538,7 @@ export default function ProjectDetail() {
 
   return (
     <>
-      {/* ─ Nav ─ */}
-      <Nav>
-        <NavBrand onClick={() => navigate('/')}>hanee oh</NavBrand>
-        <NavBack onClick={() => navigate('/')}>← Collection</NavBack>
-      </Nav>
+      <Nav rightSlot={<button onClick={() => navigate('/collection')} style={{ cursor: 'pointer' }}>← Collection</button>} />
 
       {/* ─ Breadcrumb ─ */}
       <Breadcrumb>
